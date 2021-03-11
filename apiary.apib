@@ -1,0 +1,327 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# 物流模組
+
+# 214
+
+# Group 1. Logistic
+
+## App-MP01.  [/logistic/login]
+## 登入
+
+
+### /logistic/create [POST]
++ Request  (application/json)
+登入
+
+    + Headers
+            
+            language: zh_TW
+            app-id: sDhvehnBUaXs4sqYK347ZzbshjC4jvhT
+            device-uuid: 123e4567-e89b-12d3-a456-426655440000
+
+
+    + Attribute
+        + request_parameter (Request11MP01, required) - 查詢資料
+        + timestamp (string, required) - (datetime)時間戳記
+
+    + Body
+
+            {
+              "request_parameter": {
+                "account": "0987654321",
+                "password": "12345678"
+              },
+              "timestamp": "2019/01/01 10:00:05"
+            }
+
++ Response 200 (application/json)
+
+    + Attribute (BaseResponse)
+        + results (object)
+            + member_access_token (string, required) - 會員憑證
+
+    + Body
+
+            {
+              "rcrm": {
+                "RC": "C01",
+                "RM": "成功",
+                "RM_detail": ""
+              },
+              "results": {
+                "member_access_token": "50f90c276b72d99"
+              }
+            }
+
+
+# Group 99 資料結構
+## 簡介
+此區塊非 API，為自定義的物件資料結構文件。
+## Base Response [/data_structure/base_response]
+### /data_structure/base_response [GET]
++ Response 200 (application/json)
+    + Attributes
+        + BaseResponse (BaseResponse)
+
+## Key Value Object [/data_structure/key_value_object]
+### /data_structure/key_value_object [GET]
++ Response 200 (application/json)
+    + Attributes
+        + KeyValueObject (KeyValueObject)        
+
+## Image [/data_structure/image]
+### /data_structure/image [GET]
++ Response 200 (application/json)
+    + Attributes
+        + Image (Image)  
+
+
+# Data Structures
+
+## Request11MP01 (object)
++ account (string, required) - (AES)帳號
++ password (string, required) - (AES)密碼
+
+## Request11MP02 (object)
++ fb_token (string, required) - FB token
+
+## Request11MP03 (object)
++ register_check (Register, required) - 註冊檢查
+
+
+## Request11MP04 (object)
++ register (Register, required) - 註冊
++ bind_third_party (object, optional) - 第三方綁訂
+    + source (enum, required) - 來源
+        + "Facebook" (string) - Facebook
+        + "LINE" (string) - LINE
+        + "Apple" (string) - Apple Sign in
+    + verify_data (object, required) - 驗證用 key-value 資訊
+
+## Request11MP05 (object)
++ verify_code (string, required) -驗證碼
+
+## Request11MP06 (object)
+
+## Request11MP07 (object)
++ mobile (string, required) - (AES)手機號碼
+
+## Request11MP08 (object)
++ mobile (string, required) - (AES)手機號碼
++ birthday (string, required) - 生日
+
+## Request11MP08v1.1 (object)
++ mobile (string, required) - (AES)手機號碼
++ security_question (enum, required) - 忘記密碼安全問題
+    + "sq01" (string) - 您畢業的國小
+    + "sq02" (string) - 您最愛的寵物名字
+    + "sq03" (string) - 您最愛的食物
+    + "sq04" (string) - 您最好朋友的名字
+    + "sq05" (string) - 您最愛的電影
++ security_answer (string, required) - 忘記密碼安全問題答案
+
+## Request11MP09 (object)
++ verify_code (string, required) -驗證碼
+
+## Request11MP10 (object)
+
+## Request11MP11 (object)
++ new_password (string, required) - (AES)新密碼
+
+## Request11MP12 (object)
+
+## Request11MP13 (object)
++ photo (string, required) - 圖片base64後的字串
+
+## Request11MP14 (object)
++ member_profile (MemberProfile, required) - 會員資料
+
+## Request11MP15 (object)
++ mobile (string, required) - (AES)手機號碼
++ password (string, required) - (AES)密碼
+
+## Request11MP16 (object)
++ verify_code (string, required) -驗證碼
+
+## Request11MP17 (object)
+
+## Request11MP18 (object)
++ old_password (string, required) - (AES)舊密碼
++ new_password (string, required) - (AES)新密碼
+
+## Request11MP19 (object)
++ password (string, required) - (AES)密碼
+
+## Request11MP20 (object)
+
+## Request11MP21 (object)
+
+## Request11MP22 (object)
++ password (string, required) - (AES)初次設定的會員支付密碼
+
+## Request11MP23 (object)
++ old_password (string, required) - (AES)目前的會員支付密碼
++ new_password (string, required) - (AES)新的會員支付密碼
+
+## Request11MP24 (object)
++ member_password (string, required) - (AES)會員密碼
++ new_payment_password (string, required) - (AES)新的會員支付密碼
+
+## Request11MP25 (object)
++ password (string, required) - (AES)會員支付密碼
+
+## Request11MP26 (object)
+
+## Request11MP27 (object)
++ register (Register, required) - 註冊
++ third_party_crm_data (string, required) - (AES)3rd CRM 會員資料
++ bind_third_party (object, optional) - 第三方綁訂
+    + source (enum, required) - 來源
+        + "Facebook" (string) - Facebook
+        + "LINE" (string) - LINE
+        + "Apple" (string) - Apple Sign in
+    + verify_data (object, required) - 驗證用 key-value 資訊
+    
+## Request11MP28 (object)
++ source (enum, required) - 來源
+    + "TCRM" (string) - TCRM
+    + "Facebook" (string) - Facebook
+    + "LINE" (string) - LINE
+    + "Apple" (string) - Apple Sign in
++ verify_data (object, required) - 驗證用 key-value 資訊
+
+## Request11MP29 (object)
++ source (enum, required) - 來源
+    + "TCRM" (string) - TCRM
+    + "Facebook" (string) - Facebook
+    + "LINE" (string) - LINE
+    + "Apple" (string) - Apple Sign in
++ verify_data (object, required) - 驗證用 key-value 資訊
+
+## Request11MP30 (object)
++ source (enum, required) - 來源
+    + "TCRM" (string) - TCRM
+    + "Facebook" (string) - Facebook
+    + "LINE" (string) - LINE
+    + "Apple" (string) - Apple Sign in
+
+## Request11MP31 (object)
+## Request11MP32 (object)
+
+
+## Request11PP01 (object)
++ mobile (string, required) - 手機號碼
+
+
+## BaseResponse (object)
++ rcrm (object, required)
+    + RC (string, required) - response code
+    + RM (string, required) - response message
+    + RM_detail (string, required) - response detail message
+
+## KeyValueObject (object)
++ key (string, required) - 鍵值
++ value (string, required) - 資料
+
+## Image (object)
++ width (number, required) - 寬
++ height (number, required) - 高
++ url (string, required) - 網址
+
+## Register (object)
++ mobile (string, required) - (AES)手機號碼
++ password (string, required) - (AES)密碼
++ name (string, required) - 姓名，預設情境必填
++ gender (enum, optional) - 性別，預設情境必填
+    + "M" (string) - 男性
+    + "F" (string) - 女性
+    + "S" (string) - 保密
++ birthday (string, optional) - 生日，預設情境非必填
++ email (string, optional) - 信箱，預設情境非必填
++ city (string, optional) - 縣市，預設情境非必填
++ district (string, optional) - 區域，預設情境非必填
++ address (string, optional) - 地址，預設情境非必填
++ security_question (enum, required) - 忘記密碼安全問題，預設情境為必填
+    + "sq01" (string) - 您畢業的國小
+    + "sq02" (string) - 您最愛的寵物名字
+    + "sq03" (string) - 您最愛的食物
+    + "sq04" (string) - 您最好朋友的名字
+    + "sq05" (string) - 您最愛的電影
++ security_answer (string, required) - 忘記密碼安全問題答案，預設情境為必填
++ referrer_code (string, optional) - 填入他人的推薦碼
++ einvoice_carrier_no (string, optional) - 財政部手機載具號碼
+
+## MemberProfile (object)
++ photo (Image, required) - 照片
++ mobile (string, required) - 手機號碼
++ name (string, required) - 姓名，預設情境必填
++ gender (enum, optional) - 性別，預設情境必填
+    + "M" (string) - 男性
+    + "F" (string) - 女性
+    + "S" (string) - 保密
++ birthday (string, optional) - 生日，預設情境非必填
++ email (string, optional) - 信箱，預設情境非必填
++ city (string, optional) - 縣市，預設情境非必填
++ district (string, optional) - 區域，預設情境非必填
++ address (string, optional) - 地址，預設情境非必填
++ member_no (string, required) - 外部系統使用的會員編號
++ security_question (enum, required) - 忘記密碼安全問題，預設情境為必填
+    + "sq01" (string) - 您畢業的國小
+    + "sq02" (string) - 您最愛的寵物名字
+    + "sq03" (string) - 您最愛的食物
+    + "sq04" (string) - 您最好朋友的名字
+    + "sq05" (string) - 您最愛的電影
++ security_answer (string, required) - 忘記密碼安全問題答案，預設情境為必填
++ referral_code (string, required) - 會員個人推薦碼
++ einvoice_carrier_no (string, optional) - 財政部手機載具號碼
++ thirdparty_crm_card_no (string, optional) - 第三方系統會員卡號
+
+
+## MemberCard (object)
++ code_info (object, required) - 密碼資料
+    + member_no (string, optional) - 外部系統使用的會員編號
+    + card_info (array[KeyValueObject], required) - 會員卡號
+
+## MemberCouponSummary (object)
++ valid_coupon_amount (number, required) - 可用行銷票券總數
+
+## MemberPointSummary (object)
++ current_point (array[CurrentPointWithDueToExpire], required) - 目前點數
+
+## CurrentPointWithDueToExpire (object)
++ point_id (number, required) - 點數主鍵值 
++ amount (string, required) - (numeric)數量
++ point_due_to_expire (array[PointDueToExpire], required) - 點數到期資訊
+
+## PointDueToExpire (object)
++ datetime (string, required) - (datetime)點數到期日
++ amount (string, required) - (numeric)數量
+
+## MemberLevelSummary (object)
++ current_level (CurrentLevel, required) - 目前等級
++ next_level (object, required) - 下一等級
+    + level_id (number, required) - 等級主鍵值
+    + progress (array[NextLevelProgress], required) - 達成下一等級進度資訊
++ renew_level (object, required) - 續等等級
+    + level_id (number, required) - 等級主鍵值
+    + progress (array[RenewLevelProgress], required) - 續等目前等級進度資訊
+
+## NextLevelProgress (object)
++ type (enum, required) - 下一等級達成參考類型
+    + "amount" (string) - 金額
+    + "frequency" (string) - 次數
++ amount (string, required) - (numeric)數量
++ requirement (string, required) - 需求數量
+
+## RenewLevelProgress (object)
++ type (enum, required) - 續等等級達成參考類型
+    + "amount" (string) - 金額
+    + "frequency" (string) - 次數
++ amount (string, required) - (numeric)數量
++ requirement (string, required) - 需求數量
+
+## CurrentLevel (object)
++ level_id (number, required) - 等級主鍵值
++ level_end_datetime (string, required) - (datetime)等級到期時間
